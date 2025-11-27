@@ -1,4 +1,4 @@
-import { randomPointNZ } from "./randomPointNZ.js"; // Interesting have to add .js here even in a .ts file
+import { randomPointNZ } from "./randomPointNZ.js"; 
 
 describe("randomPointNZ", () => {
 
@@ -22,7 +22,5 @@ describe("randomPointNZ", () => {
         }
     });
     
-
-   
 
 });

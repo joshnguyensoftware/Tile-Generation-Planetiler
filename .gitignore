@@ -1,0 +1,4 @@
+node_modules/
+Data Generation/Data/
+.env
+.DS_Store

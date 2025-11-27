@@ -22,4 +22,3 @@ export function randomPointNZ(): number[] {
     }
 }
 
-console.log(randomPointNZ());

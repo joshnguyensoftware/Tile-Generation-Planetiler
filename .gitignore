@@ -1,4 +1,4 @@
 node_modules/
-Data Generation/Data/
+dataGeneration/data/
 .env
 .DS_Store

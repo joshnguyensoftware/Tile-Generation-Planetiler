@@ -1,55 +1,27 @@
-import * as turf from '@turf/turf';
-import * as fs from 'fs';
-import { generateGeofence } from './helperFunction/generateGeofence.js';
-import { generateTrip } from './helperFunction/generateTrip.js';
-import { generateStop } from './helperFunction/generateStop.js';
+import { TOTAL_FEATURES, OUTPUT_PATH, NUM_GEOFENCES, NUM_STOPS, NUM_TRIPS } from './constants.js';
+import { writeGeofences } from './writeFunction/writeGeofences.js';
+import { writeTrips } from './writeFunction/writeTrips.js';
+import { writePoints } from './writeFunction/writePoints.js';
+import { start } from 'repl';
+import { startWriteStream } from './writeFunction/startWritestream.js';
+import { endWriteStream } from './writeFunction/endWritestream.js';
 
-const TOTAL_FEATURES: number = 250000;
-const OUTPUT_PATH = 'data/sampleData.geojson';
 
-const RATIOS = {
-    GEOFENCE: 0.4,
-    TRIP: 0.4,
-    STOP: 0.2
+function init(){
+
+    console.log(`Start generating ${TOTAL_FEATURES} features...`);
+
+    const writeStream = startWriteStream(OUTPUT_PATH);
+
+    writeGeofences(writeStream, NUM_GEOFENCES);
+    writeTrips(writeStream, NUM_TRIPS, NUM_GEOFENCES);
+    writePoints(writeStream, NUM_STOPS, NUM_GEOFENCES, NUM_TRIPS);
+
+    endWriteStream(writeStream, TOTAL_FEATURES, OUTPUT_PATH);
+
 }
 
-console.log(`Start generating ${TOTAL_FEATURES} features...`);
-
-const writeStream = fs.createWriteStream(OUTPUT_PATH);
-writeStream.write('{"type":"FeatureCollection","features":[\n');
-
-const NUM_GEOFENCES = Math.floor(TOTAL_FEATURES * RATIOS.GEOFENCE);
-const NUM_TRIPS = Math.floor(TOTAL_FEATURES * RATIOS.TRIP);
-const NUM_STOPS = TOTAL_FEATURES - NUM_GEOFENCES - NUM_TRIPS; 
-
-for (let i = 0; i < NUM_GEOFENCES; i++) {
-    const geofence = generateGeofence(i);
-    writeStream.write(JSON.stringify(geofence));
-    if (i < TOTAL_FEATURES - 1) {
-        writeStream.write(',\n');
-    }
-}
-
-for (let i = 0; i < NUM_TRIPS; i++) {
-    const trip = generateTrip(i);
-    writeStream.write(JSON.stringify(trip));
-    if (NUM_GEOFENCES + i < TOTAL_FEATURES - 1) {
-        writeStream.write(',\n');
-    }
-}
-
-for (let i = 0; i < NUM_STOPS; i++) {
-    const stop = generateStop(i);
-    writeStream.write(JSON.stringify(stop));
-    if (NUM_GEOFENCES + NUM_TRIPS + i < TOTAL_FEATURES - 1) {
-        writeStream.write(',\n');
-    }
-}
-
-writeStream.write('\n]}');
-writeStream.end(() => {
-    console.log(`Finished generating ${TOTAL_FEATURES} features to ${OUTPUT_PATH}`);
-}); 
+init();
 
 
 

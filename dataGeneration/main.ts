@@ -2,7 +2,6 @@ import { TOTAL_FEATURES, OUTPUT_PATH, NUM_GEOFENCES, NUM_STOPS, NUM_TRIPS } from
 import { writeGeofences } from './writeFunction/writeGeofences.js';
 import { writeTrips } from './writeFunction/writeTrips.js';
 import { writePoints } from './writeFunction/writePoints.js';
-import { start } from 'repl';
 import { startWriteStream } from './writeFunction/startWritestream.js';
 import { endWriteStream } from './writeFunction/endWritestream.js';
 

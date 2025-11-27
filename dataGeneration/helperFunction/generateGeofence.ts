@@ -5,7 +5,7 @@ import * as turf from "@turf/turf";
 import type { Feature, Polygon } from "geojson";
 
 /**
- * Generates a geofence as a circular polygon  with random properties.
+ * Generates a geofence as a circular polygon with random properties.
  *
  * @param id - A unique identifier for the geofence.
  * @returns A GeoJSON representing the geofence polygon.

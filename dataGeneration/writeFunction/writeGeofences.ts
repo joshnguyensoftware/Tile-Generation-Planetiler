@@ -11,10 +11,6 @@ export function writeGeofences(writeStream: fs.WriteStream, NUM_GEOFENCES: numbe
     for (let i = 0; i < NUM_GEOFENCES; i++) {
         const geofence = generateGeofence(i);
         writeStream.write(JSON.stringify(geofence));
-
-        if (i < TOTAL_FEATURES - 1) {
-            writeStream.write(',\n');
-        }
     }
 }
 

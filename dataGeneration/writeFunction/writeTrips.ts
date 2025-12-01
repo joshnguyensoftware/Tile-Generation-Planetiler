@@ -11,6 +11,7 @@ export function writeTrips(writeStream: fs.WriteStream, NUM_TRIPS: number, NUM_G
     for (let i = 0; i < NUM_TRIPS; i++) {
         const trip = generateTrip(i);
         writeStream.write(JSON.stringify(trip));
+        writeStream.write("\n");
     }
 }
 

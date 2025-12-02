@@ -2,3 +2,4 @@ node_modules/
 dataGeneration/data/
 .env
 .DS_Store
+.vscode/

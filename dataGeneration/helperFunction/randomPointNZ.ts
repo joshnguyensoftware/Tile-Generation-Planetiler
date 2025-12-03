@@ -1,8 +1,7 @@
 
 import { randomPoint } from "@turf/turf";
 
-const NZ_BBOX: [number, number, number, number] = [166.0, -47.3, 178.6, -34.4];
-
+import { NZ_BBOX } from "../constants.js";
 /**
  * Generates a random point within New Zealand.
  

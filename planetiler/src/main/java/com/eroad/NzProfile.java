@@ -1,6 +1,9 @@
 package com.eroad;
 import java.nio.file.Path;
 
+import com.eroad.processors.GeofenceProcessor;
+import com.eroad.processors.StopProcessor;
+import com.eroad.processors.TripProcessor;
 import com.onthegomap.planetiler.FeatureCollector;
 import com.onthegomap.planetiler.Planetiler;
 import com.onthegomap.planetiler.Profile;
@@ -22,28 +25,13 @@ public class NzProfile implements Profile{
 
         try{
             if(myType != null && myType.equals("geofence")){
-                features.polygon("geofences")
-                .setBufferPixels(4)
-                .setMinZoom(0)
-                .setMaxZoom(14)
-                .setAttr("id", sourceFeature.getString("id"));
-
+                GeofenceProcessor.processPolygonFeature(sourceFeature, features, "geofences", 0, 14);
             }
             else if(myType != null && myType.equals("trip")){
-                features.line("trips")
-                .setBufferPixels(4)
-                .setMinZoom(0)
-                .setMaxZoom(14)
-                .setAttr("id", sourceFeature.getString("id"))
-                .setAttr("vehicle", sourceFeature.getString("vehicle"));
+                TripProcessor.processTripFeature(sourceFeature, features, myType, 0, 0);
             }
             else if(myType != null && myType.equals("stop")){
-                features.point("stops")
-                .setBufferPixels(4)
-                .setMinZoom(0)
-                .setMaxZoom(14)
-                .setAttr("id", sourceFeature.getString("id"))
-                .setAttr("duration_mins", sourceFeature.getLong("duration_mins"));
+                StopProcessor.processStopFeature(sourceFeature, features, "stops", 0, 14);
             }
             else{
                 System.out.println("Unknown feature type:" + myType);

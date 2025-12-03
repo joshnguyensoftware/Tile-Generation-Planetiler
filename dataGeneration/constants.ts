@@ -11,3 +11,5 @@ export const RATIOS = {
 export const NUM_GEOFENCES = Math.floor(TOTAL_FEATURES * RATIOS.GEOFENCE);
 export const NUM_TRIPS = Math.floor(TOTAL_FEATURES * RATIOS.TRIP);
 export const NUM_STOPS = TOTAL_FEATURES - NUM_GEOFENCES - NUM_TRIPS; 
+
+export const NZ_BBOX: [number, number, number, number] = [174.75, -36.85, 174.775, -36.83];

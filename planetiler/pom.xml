@@ -53,6 +53,7 @@
                             <filters>
                                 <filter>
                                     <artifact>*:*</artifact>
+                                    <!-- Exclude signature files when building the fat JAR -->
                                     <excludes>
                                         <exclude>META-INF/*.SF</exclude>
                                         <exclude>META-INF/*.DSA</exclude>

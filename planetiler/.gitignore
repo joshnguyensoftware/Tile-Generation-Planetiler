@@ -2,3 +2,4 @@ target/
 data/
 dependency-reduced-pom.xml
 outputTiles
+planetiler.jar

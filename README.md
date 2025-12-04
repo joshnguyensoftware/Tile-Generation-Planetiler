@@ -83,13 +83,6 @@ java -jar target/planetiler-1.0-SNAPSHOT.jar --force --tile-compression=none
 | trips       | Line    | id, vehicle               | 0-14        |
 | stops       | Point   | id, duration_mins         | 0-14        |
 
-### Testing
-
-```bash
-mvn test
-```
-
-Tests are located in `src/test/java/com/eroad/`.
 
 ### Serving Tiles Locally
 
@@ -132,16 +125,6 @@ Update `src/config/mapConfig.ts` if needed:
 1. **Start Development Server**
 ```bash
 npm run dev
-```
-
-2. **Build for Production**
-```bash
-npm run build
-```
-
-3. **Preview Production Build**
-```bash
-npm run preview
 ```
 
 ### Project Structure

@@ -18,9 +18,10 @@ The current distribution ratio is 40% Geofences, 40% Trips and 20% Stops.
 
 ### Usage
 
-1. **Install**
+1. **Install and Create Data Folder**
 ```bash
 cd dataGeneration && npm install
+mkdir -p data
 ```
 
 2. **Run**
